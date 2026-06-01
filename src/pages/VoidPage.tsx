@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Journal } from '@/components/void/Journal';
 import { FileShelf } from '@/components/secure-drop/FileShelf';
-import { motion } from 'framer-motion';
 
 export const VoidPage = () => {
     const [username, setUsername] = useState('');

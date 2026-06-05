@@ -17,48 +17,33 @@ export const Hero = () => {
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Subtle dark gradient for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/75" />
 
-      {/* Content */}
       <div className="relative z-10 flex h-full items-center justify-center px-6 text-center">
         <div>
-          <h1 className="text-[92px] md:text-[128px] font-display font-medium tracking-[-5px] text-white leading-[0.9]">
+          <h1 className="text-[92px] md:text-[128px] font-display font-medium tracking-[-5.5px] text-white leading-[0.88]">
             Josh Dobson.
           </h1>
 
-          <p className="mt-4 text-3xl md:text-4xl font-light text-white/90">
-            IT Support &amp; Projects Engineer
+          <p className="mt-3 text-3xl md:text-[42px] font-light text-white/90 tracking-tight">
+            Modern Workplace &amp; Automation Architect
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-mono uppercase tracking-[3.5px] text-white/70">
-            <span>ACTIVE SINCE: 2016</span>
-            <span>•</span>
-            <span>DEPLOYMENTS: UK // USA // ZAMBIA</span>
-          </div>
+          <p className="mt-4 max-w-md mx-auto text-white/70 text-lg">
+            I build resilient systems that reduce friction and raise the bar.
+          </p>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-10 text-white">
-            {[
-              { num: "8+", label: "Years Active" },
-              { num: "500+", label: "Users Supported" },
-              { num: "500+", label: "Devices Managed" },
-            ].map((stat, i) => (
-              <div key={i}>
-                <div className="text-7xl font-display font-medium tracking-tighter text-[#D97706]">
-                  {stat.num}
-                </div>
-                <div className="text-xs font-mono tracking-[2.5px] text-white/60 mt-2">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+          <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-mono uppercase tracking-[3px] text-white/60">
+            <span>8+ YEARS</span>
+            <span>•</span>
+            <span>UK • USA • ZAMBIA • REMOTE</span>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 text-center">
-        <div className="text-white/60 text-xs font-mono tracking-[3.5px]">EXPLORE MORE BELOW</div>
-        <div className="h-px w-8 bg-white/40 mx-auto mt-2" />
+      <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-20 text-center">
+        <div className="text-white/50 text-xs font-mono tracking-[4px]">SCROLL TO EXPLORE</div>
+        <div className="h-px w-6 bg-white/30 mx-auto mt-3" />
       </div>
     </section>
   );

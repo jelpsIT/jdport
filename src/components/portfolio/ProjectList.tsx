@@ -3,21 +3,24 @@ import { motion } from 'framer-motion';
 const PROJECTS = [
     {
         title: "Freshservice RAG Automation",
-        category: "AI & Automation",
+        category: "AI & Intelligent Automation",
         stack: ["Python", "Flask", "ChromaDB", "Google Gemini"],
-        description: "An intelligent automation layer for ITSM. Intercepts webhooks to perform semantic search on ticket history using Vector Embeddings (RAG), providing agents with instant, context-aware resolutions. Reduced MTTR significantly."
+        description: "Built a production RAG system that performs semantic search across years of historical tickets. Agents now receive context-aware suggestions, significantly reducing mean time to resolution on recurring issues.",
+        impact: "Reduced repetitive L1 workload and improved first-contact resolution quality."
     },
     {
-        title: "ESET to Bitdefender Migration",
-        category: "Infrastructure Security",
-        stack: ["PowerShell", "Intune", "Win32 Apps", "Registry Hacking"],
-        description: "Orchestrated a 'Rip and Replace' migration of global antivirus endpoints. Developed a robust 'Zombie State' handling script in PowerShell to manage uninstallation flags and 32-bit process tracking, ensuring zero downtime."
+        title: "Enterprise Passwordless Migration",
+        category: "Identity & Security",
+        stack: ["Intune", "Entra ID", "Windows Hello for Business", "Conditional Access"],
+        description: "Led organisation-wide transition from passwords to phishing-resistant authentication. Delivered over 50% of an 8-week project in under 3 weeks through focused execution and rapid problem-solving.",
+        impact: "Major improvement in security posture with strong user adoption."
     },
     {
-        title: "Intune Master Configuration",
-        category: "Enterprise Architecture",
-        stack: ["Endpoint Manager", "JSON", "ADMX", "Conditional Access"],
-        description: "Architected the Zero Trust security posture for 2025. Implemented Conditional Access policies, automated OOBE compliance flows, and 'Settings Catalog' standardization across UK/USA offices."
+        title: "Global Antivirus Migration (ESET)",
+        category: "Endpoint Security",
+        stack: ["PowerShell", "Intune Win32", "Registry Engineering"],
+        description: "Orchestrated a zero-downtime rip-and-replace of the global antivirus solution. Developed custom handling for 'zombie state' detection and 32-bit process edge cases.",
+        impact: "Clean migration with no user disruption across hundreds of endpoints."
     }
 ];
 
@@ -25,28 +28,25 @@ export const ProjectList = () => {
     return (
         <div className="grid grid-cols-1 gap-16">
             {PROJECTS.map((project, i) => (
-                <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="group"
-                >
-                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-2">
-                        <h3 className="text-xl font-serif text-ink-900 group-hover:underline decoration-1 underline-offset-4 decoration-ink-400 cursor-default">
+                <motion.div key={i} className="group">
+                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-3">
+                        <h3 className="text-2xl font-serif tracking-tight group-hover:text-[#D97706] transition-colors">
                             {project.title}
                         </h3>
-                        <span className="text-xs font-mono text-ink-400 uppercase tracking-widest mt-1 md:mt-0">{project.category}</span>
+                        <span className="text-xs font-mono text-[#888] mt-1 md:mt-0">{project.category}</span>
                     </div>
 
-                    <p className="text-ink-900/80 font-light leading-relaxed max-w-2xl mb-4">
+                    <p className="text-[#444] leading-relaxed mb-4 max-w-3xl">
                         {project.description}
                     </p>
 
+                    {project.impact && (
+                        <p className="text-sm text-[#666] italic mb-4">→ {project.impact}</p>
+                    )}
+
                     <div className="flex flex-wrap gap-2">
                         {project.stack.map((tech) => (
-                            <span key={tech} className="text-[10px] font-medium text-ink-400 border border-ink-400/20 px-2 py-1 rounded-sm">
+                            <span key={tech} className="text-xs px-3 py-1 bg-[#f8f8f8] text-[#555] rounded-full">
                                 {tech}
                             </span>
                         ))}

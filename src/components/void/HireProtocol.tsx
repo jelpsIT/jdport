@@ -8,7 +8,6 @@ export const HireProtocol = ({ mode = 'standalone' }: { mode?: 'standalone' | 'i
     const [brief, setBrief] = useState('');
     const [analysis, setAnalysis] = useState({ type: 'General', estimate: 'TBD' });
 
-    // Dynamic Scope Analysis based on user input
     useEffect(() => {
         const text = brief.toLowerCase();
         if (text.match(/security|audit|pentest|secure|encryption|hack/)) {
@@ -27,141 +26,135 @@ export const HireProtocol = ({ mode = 'standalone' }: { mode?: 'standalone' | 'i
     };
 
     const handlePayment = () => {
-        // Stripe Payment Link for the £100 Retainer
         window.open('https://buy.stripe.com/9B63cvcLSdeYbFs4nm0RG00', '_blank');
     };
 
+    // Improved inline button - much more visible
     const buttonContent = (
         <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.985 }}
             onClick={handleInitialClick}
-            className={`group relative border border-ink-900 overflow-hidden bg-white 
-                ${mode === 'inline' ? 'px-5 py-2' : 'px-8 py-3'}`}
+            className={`group relative flex items-center gap-2 rounded-lg border border-[#171717] px-5 py-2.5 text-sm font-medium transition-all
+                ${mode === 'inline' 
+                    ? 'bg-[#171717] text-white hover:bg-black' 
+                    : 'bg-white text-[#171717] hover:bg-[#171717] hover:text-white'
+                }`}
         >
-            <div className="absolute inset-0 bg-ink-900 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            <div className={`relative flex items-center gap-2 text-ink-900 group-hover:text-white transition-colors font-mono text-xs tracking-widest uppercase`}>
-                <Briefcase className="w-3 h-3" />
-                <span>Request Services</span>
-            </div>
+            <Briefcase className="w-4 h-4" />
+            <span>Request Services</span>
         </motion.button>
     );
 
     return (
         <>
             {mode === 'standalone' ? (
-                <div className="w-full max-w-2xl mx-auto mt-24 pb-24">
-                    <div className="flex justify-center">
-                        {buttonContent}
-                    </div>
+                <div className="w-full max-w-2xl mx-auto mt-24 pb-24 flex justify-center">
+                    {buttonContent}
                 </div>
             ) : (
                 buttonContent
             )}
 
-            {/* Modal */}
+            {/* Modal remains the same */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink-50/90 backdrop-blur-sm"
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
                     >
                         <motion.div
-                            initial={{ scale: 0.95, opacity: 0, y: 10 }}
+                            initial={{ scale: 0.96, opacity: 0, y: 10 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.95, opacity: 0, y: 10 }}
-                            className="w-full max-w-lg bg-white border border-ink-200 shadow-2xl relative overflow-hidden"
+                            exit={{ scale: 0.96, opacity: 0, y: 10 }}
+                            className="w-full max-w-lg bg-white border border-[#eee] shadow-2xl relative overflow-hidden"
                         >
                             {/* Header */}
-                            <div className="h-10 border-b border-ink-100 flex items-center justify-between px-6 bg-ink-50/50">
-                                <div className="flex items-center gap-2 text-[10px] font-mono text-ink-400 uppercase tracking-widest">
+                            <div className="h-11 border-b border-[#eee] flex items-center justify-between px-6 bg-[#fafafa]">
+                                <div className="flex items-center gap-2 text-[10px] font-mono text-[#666] uppercase tracking-widest">
                                     <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                                    PROTOCOL_CONTRACT_INIT
+                                    COLLABORATION PROTOCOL
                                 </div>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="text-ink-400 hover:text-ink-900 transition-colors"
+                                    className="text-[#666] hover:text-[#171717] transition-colors"
                                 >
                                     <X className="w-4 h-4" />
                                 </button>
                             </div>
 
-                            {/* Content */}
                             <div className="p-8">
                                 <div className="mb-8">
-                                    <h2 className="text-2xl font-serif text-ink-900 mb-2">
-                                        Let's Collaborate
-                                    </h2>
-                                    <p className="text-sm font-light text-ink-500 max-w-sm leading-relaxed">
-                                        I'm currently accepting new projects. Tell me about your vision, and let's see how we can build it.
+                                    <h2 className="text-2xl font-serif text-[#171717] mb-2">Let's Work Together</h2>
+                                    <p className="text-sm text-[#555] max-w-sm leading-relaxed">
+                                        I'm currently open to select projects. Tell me about what you're looking to build.
                                     </p>
                                 </div>
 
                                 {step === 'brief' ? (
                                     <div className="space-y-6">
-                                        <div className="space-y-2">
-                                            <div className="flex justify-between items-baseline">
-                                                <label className="text-[10px] uppercase text-ink-400 font-mono tracking-wider">
+                                        <div>
+                                            <div className="flex justify-between items-baseline mb-2">
+                                                <label className="text-[10px] uppercase tracking-widest text-[#888] font-medium">
                                                     Project Brief
                                                 </label>
-                                                <span className="text-[10px] text-ink-300 font-mono">
+                                                <span className="text-[10px] text-[#aaa] font-mono">
                                                     {brief.length}/500
                                                 </span>
                                             </div>
                                             <textarea
                                                 value={brief}
                                                 onChange={(e) => setBrief(e.target.value)}
-                                                placeholder="Outline requirements, timeline, and core objectives..."
-                                                className="w-full h-32 bg-ink-50 border border-ink-200 text-ink-900 font-mono text-xs p-4 focus:border-ink-900 focus:outline-none transition-colors resize-none placeholder:text-ink-300"
+                                                placeholder="Describe the project, goals, and timeline..."
+                                                className="w-full h-36 bg-[#fafafa] border border-[#ddd] text-[#171717] font-mono text-sm p-4 focus:border-[#171717] focus:outline-none transition-colors resize-y min-h-[120px]"
                                             />
                                         </div>
+
                                         <button
                                             onClick={() => setStep('payment')}
                                             disabled={!brief.trim()}
-                                            className="w-full py-3 bg-ink-900 hover:bg-ink-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-mono text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2"
+                                            className="w-full py-3.5 bg-[#171717] hover:bg-black disabled:opacity-40 disabled:cursor-not-allowed text-white font-mono text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 rounded-lg"
                                         >
-                                            Next: Scope Estimate
-                                            <ChevronRight className="w-3 h-3" />
+                                            Continue to Scope Estimate
+                                            <ChevronRight className="w-3.5 h-3.5" />
                                         </button>
                                     </div>
                                 ) : (
                                     <div className="space-y-6">
-                                        {/* Dynamic Scope Result */}
-                                        <div className="p-4 bg-ink-50 border border-ink-100 space-y-3">
-                                            <div className="flex items-center gap-2 text-xs font-mono text-ink-500 uppercase tracking-wider">
-                                                <Cpu className="w-3 h-3" />
-                                                Project Category
+                                        <div className="p-5 bg-[#fafafa] border border-[#eee]">
+                                            <div className="flex items-center gap-2 text-xs font-mono text-[#888] uppercase tracking-wider mb-3">
+                                                <Cpu className="w-3.5 h-3.5" />
+                                                PROJECT CATEGORY
                                             </div>
-                                            <div className="flex justify-between items-end border-b border-ink-200 pb-2">
-                                                <span className="font-serif text-ink-900 text-lg">{analysis.type}</span>
-                                                <span className="font-mono text-xs text-ink-500">{analysis.estimate}</span>
+                                            <div className="flex justify-between items-end border-b border-[#ddd] pb-3">
+                                                <span className="font-serif text-xl text-[#171717]">{analysis.type}</span>
+                                                <span className="font-mono text-sm text-[#666]">{analysis.estimate}</span>
                                             </div>
-                                            <p className="text-[10px] text-ink-400 font-mono leading-relaxed">
-                                                *This retainer secures a dedicated consultation session to roadmap your project. Final costs are determined after we define the full scope.
+                                            <p className="text-[11px] text-[#777] mt-3 leading-relaxed">
+                                                This retainer secures a dedicated scoping session. Final pricing is confirmed after we define the full scope together.
                                             </p>
                                         </div>
 
-                                        {/* Cost Breakdown */}
-                                        <div className="flex justify-between items-center px-2">
-                                            <span className="font-mono text-xs text-ink-500 uppercase">Consultation Retainer</span>
-                                            <span className="font-serif text-xl text-ink-900">£100.00</span>
+                                        <div className="flex justify-between items-center px-1">
+                                            <span className="font-mono text-xs text-[#888] uppercase">Consultation Retainer</span>
+                                            <span className="font-serif text-2xl text-[#171717]">£100</span>
                                         </div>
 
-                                        <div className="flex gap-4 pt-2">
+                                        <div className="flex gap-3 pt-2">
                                             <button
                                                 onClick={() => setStep('brief')}
-                                                className="flex-1 py-3 text-ink-400 hover:text-ink-900 font-mono text-xs uppercase tracking-widest transition-colors"
+                                                className="flex-1 py-3 text-[#666] hover:text-[#171717] font-mono text-xs uppercase tracking-widest transition-colors"
                                             >
-                                                Edit Brief
+                                                Back
                                             </button>
                                             <button
                                                 onClick={handlePayment}
-                                                className="flex-[2] py-3 bg-ink-900 hover:bg-ink-800 text-white font-mono text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2"
+                                                className="flex-[2] py-3 bg-[#171717] hover:bg-black text-white font-mono text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 rounded-lg"
                                             >
-                                                <CreditCard className="w-3 h-3" />
-                                                Authorize Funds
+                                                <CreditCard className="w-3.5 h-3.5" />
+                                                Pay Retainer &amp; Continue
                                             </button>
                                         </div>
                                     </div>
@@ -171,7 +164,6 @@ export const HireProtocol = ({ mode = 'standalone' }: { mode?: 'standalone' | 'i
                     </motion.div>
                 )}
             </AnimatePresence>
-
         </>
     );
 };

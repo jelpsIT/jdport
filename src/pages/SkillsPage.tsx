@@ -6,7 +6,7 @@ export const SkillsPage = () => {
         <div className="max-w-5xl mx-auto px-6 py-20">
             <header className="mb-16">
                 <h1 className="text-6xl font-display font-medium tracking-tighter">Technical Portfolio.</h1>
-                <p className="mt-4 max-w-md text-[#555]">A comprehensive record of technical operations, active projects, and automation capabilities.</p>
+                <p className="mt-4 max-w-md text-[#555]">Deep expertise in Modern Workplace architecture, intelligent automation, and pragmatic security engineering.</p>
             </header>
 
             {/* Skills */}
